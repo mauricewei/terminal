@@ -1,0 +1,189 @@
+" 设置外观 -------------------------------------
+set number                      "显示行号 
+set showtabline=0               "隐藏顶部标签栏"
+set guioptions-=r               "隐藏右侧滚动条" 
+set guioptions-=L               "隐藏左侧滚动条"
+set guioptions-=b               "隐藏底部滚动条"
+set cursorline                  "突出显示当前行"
+set cursorcolumn                "突出显示当前列"
+set langmenu=zh_CN.UTF-8        "显示中文菜单
+" 变成辅助 -------------------------------------
+syntax on                           "开启语法高亮
+"set nowrap                      "设置代码不折行"
+set fileformat=unix             "设置以unix的格式保存文件"
+set cindent                     "设置C样式的缩进格式"
+set tabstop=4                   "一个 tab 显示出来是多少个空格，默认 8
+set shiftwidth=4                "每一级缩进是多少个空格
+set backspace+=indent,eol,start "set backspace&可以对其重置
+set showmatch                   "显示匹配的括号"
+set scrolloff=5                 "距离顶部和底部5行"
+set laststatus=2                "命令行为两行"
+" 其他杂项 -------------------------------------
+set mouse=a                     "启用鼠标"
+set selection=exclusive
+set selectmode=mouse,key
+set matchtime=5
+set ignorecase                  "忽略大小写"
+set incsearch
+set hlsearch                    "高亮搜索项"
+set expandtab                 	"允许扩展table"
+set whichwrap+=<,>,h,l
+set autoread
+
+
+"{vundle setup
+  set nocompatible
+  set rtp+=~/.vim/bundle/Vundle.vim
+  "vim-go | go settings `go get -u github.com/golang/lint`
+  set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
+  call vundle#begin()
+  "{plugins
+    " 安装Vundle
+    Plugin 'gmarik/Vundle.vim'
+    " 安装NERDTree
+    Plugin 'scrooloose/nerdtree'
+	Plugin 'Xuyuanp/nerdtree-git-plugin'
+    " 安装YCM
+    Plugin 'Valloric/YouCompleteMe'
+    " 状态栏增强展示
+    Plugin 'bling/vim-airline'
+    " MarkDown 预览插件
+    Plugin 'iamcco/markdown-preview.vim'
+    " puppet语法高亮显示
+    Plugin 'puppetlabs/puppet-syntax-vim'
+	" indentLine是一款缩进指示线
+	Plugin 'Yggdroot/indentLine'
+	" 代码折叠
+	Plugin 'tmhedberg/SimpylFold'
+    " 搜索文件
+    Plugin 'kien/ctrlp.vim'
+  "}
+  call vundle#end()
+"}
+
+"Return to last edit position when opening files (You want this!)
+  autocmd BufReadPost *
+       \ if line("'\"") > 0 && line("'\"") <= line("$") |
+       \   exe "normal! g`\"" |
+       \ endif
+"set it to the first line when editing a git commit message
+  au FileType gitcommit au! BufEnter COMMIT_EDITMSG
+        \ call setpos('.', [0, 1, 1, 0])
+
+
+" 插件设置
+" Plugin iamcco/markdown-preview.vim 按键绑定例子（F8打开预览窗口，F9关闭预览窗口）：
+nmap <silent> <F8> <Plug>MarkdownPreview        " 普通模式
+imap <silent> <F8> <Plug>MarkdownPreview        " 插入模式
+nmap <silent> <F9> <Plug>StopMarkdownPreview    " 普通模式
+imap <silent> <F9> <Plug>StopMarkdownPreview    " 插入模式
+
+" 配置NERDTree
+"使用F3键快速调出和隐藏它
+map <F3> :NERDTreeToggle<CR>
+let NERDTreeChDirMode=1
+"显示书签"
+let NERDTreeShowBookmarks=1
+"设置忽略文件类型"
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+"窗口大小"
+let NERDTreeWinSize=25
+" 修改默认箭头
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+"How can I open a NERDTree automatically when vim starts up if no files were specified?
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" 打开vim时自动打开NERDTree
+" autocmd vimenter * NERDTree
+"How can I open NERDTree automatically when vim starts up on opening a directory?
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+" 关闭vim时，如果打开的文件除了NERDTree没有其他文件时，它自动关闭，减少多次按:q!
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" 开发的过程中，我们希望git信息直接在NERDTree中显示出来， 和Eclipse一样，修改的文件和增加的文件都给出相应的标注， 这时需要安装的插件就是 nerdtree-git-plugin,配置信息如下
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
+" 显示行号
+let NERDTreeShowLineNumbers=1
+let NERDTreeAutoCenter=1
+" 在终端启动vim时，共享NERDTree
+let g:nerdtree_tabs_open_on_console_startup=1
+" END配置NERDTree 
+
+" 按照PEP8标准来配置vim
+au BufNewFile,BufRead *.py set tabstop=4 |set softtabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set autoindent|set fileformat=unix
+" END按照PEP8标准来配置vim
+
+" 配置yaml格式文件自动缩进
+autocmd FileType yaml setlocal ai ts=2 sw=2 et
+"END 配置yaml格式文件自动缩进
+
+" 配置indentline
+" 支持任意ASCII码，也可以使用特殊字符：¦, ┆, or │ ，但只在utf-8编码下有效
+let g:indentLine_char='¦'
+" 使indentline生效
+let g:indentLine_enabled = 1  
+" EDN配置indentline
+
+" 配置Plugin 'tmhedberg/SimpylFold'
+" 必须手动输入za来折叠（和取消折叠）
+set foldmethod=indent                " 根据每行的缩进开启折叠
+set foldlevel=99
+" 使用空格键会是更好的选择,所以在你的配置文件中加上这一行命令吧：
+nnoremap <space> za
+" 希望看到折叠代码的文档字符串？
+let g:SimpylFold_docstring_preview=1
+" ENDPlugin 'tmhedberg/SimpylFold'
+
+" 配置ctrlp.vim
+let g:ctrlp_map = '<c-p>' 
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$' 
+" END配置ctrlp.vim
+
+
+""" color settings
+ set t_Co=256
+ if has("gui_running")
+     set guioptions=gR
+     set mousemodel=popup
+     set background=light
+     ""hi LineNr cterm=bold guibg=black guifg=white
+     ""hi CursorLine cterm=none ctermbg=lightgray ctermfg=none
+     ""hi CursorColumn cterm=none ctermbg=lightgray ctermfg=none
+ else
+     set background=dark
+     ""hi LineNr cterm=bold ctermbg=black ctermfg=white
+     ""hi CursorLine cterm=none ctermbg=darkgray ctermfg=none
+     ""hi CursorColumn cterm=none ctermbg=darkgray ctermfg=none
+ endif
+
+:silent! colorscheme solarized
+"END配色方案
+
+" 函数列表插件
+filetype on
+let Tlist_Ctags_Cmd = '/usr/local/bin/my_ctags' "设定linux系统中ctags程序的位置
+let Tlist_Show_One_File = 1            "不同时显示多个文件的tag，只显示当前文件的
+let Tlist_Exit_OnlyWindow = 1          "如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口 
+
+" 快捷键设置
+:nmap tl :TlistOpen<CR>
+:map nu :set nu<CR>
+:map nnu :set nonu<CR>
+:nmap mo :set mouse=a<CR>
+:nmap nmo :set mouse=<CR>
+
+" Ag设置 
+set runtimepath^=~/.vim/bundle/ag
