@@ -5,6 +5,7 @@
 * vim >= 7.4
 * ctags
 * cmake
+* ag
 
 ## Quick Start
 

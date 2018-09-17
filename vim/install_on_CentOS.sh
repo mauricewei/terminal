@@ -1,6 +1,6 @@
 #!/bin/sh
 
-yum install -y ctags cmake gcc-c++ python-devel ncurses-devel unzip
+yum install -y ctags cmake gcc-c++ python-devel ncurses-devel unzip automake pcre-devel xz-devel
 
 wget https://github.com/vim/vim/archive/master.zip
 unzip master.zip
