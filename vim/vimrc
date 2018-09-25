@@ -187,3 +187,5 @@ let Tlist_Use_Right_Window = 1         "在右侧窗口中显示taglist窗口
 
 " Ag设置 
 set runtimepath^=~/.vim/bundle/ag
+let g:ag_prg="<custom-ag-path-goes-here> --vimgrep"
+let g:ag_working_path_mode="r"
