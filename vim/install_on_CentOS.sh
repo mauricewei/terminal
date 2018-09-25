@@ -1,10 +1,6 @@
 #!/bin/sh
 
-<<<<<<< HEAD
-yum install -y ctags cmake gcc-c++ python-devel ncurses-devel unzip automake pcre-devel xz-devel
-=======
 yum install -y ctags cmake gcc-c++ python-devel ncurses-devel unzip zlib-devel automake pcre-devel xz-devel
->>>>>>> Perfect `ag` plugin
 
 # 安装Vim8
 pushd /tmp
