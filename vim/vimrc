@@ -42,7 +42,7 @@ set autoread
     Plugin 'gmarik/Vundle.vim'
     " 安装NERDTree
     Plugin 'scrooloose/nerdtree'
-	Plugin 'Xuyuanp/nerdtree-git-plugin'
+    Plugin 'Xuyuanp/nerdtree-git-plugin'
     " 安装YCM
     Plugin 'Valloric/YouCompleteMe'
     " 状态栏增强展示
@@ -52,9 +52,9 @@ set autoread
     " puppet语法高亮显示
     Plugin 'puppetlabs/puppet-syntax-vim'
 	" indentLine是一款缩进指示线
-	Plugin 'Yggdroot/indentLine'
+    Plugin 'Yggdroot/indentLine'
 	" 代码折叠
-	Plugin 'tmhedberg/SimpylFold'
+    Plugin 'tmhedberg/SimpylFold'
     " 搜索文件
     Plugin 'kien/ctrlp.vim'
   "}
@@ -94,8 +94,6 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 "How can I open a NERDTree automatically when vim starts up if no files were specified?
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" 打开vim时自动打开NERDTree
-" autocmd vimenter * NERDTree
 "How can I open NERDTree automatically when vim starts up on opening a directory?
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
