@@ -1,6 +1,6 @@
 #!/bin/sh
 
-yum install -y ctags cmake gcc-c++ python-devel ncurses-devel unzip zlib-devel automake pcre-devel xz-devel
+yum install -y ctags cmake gcc-c++ python-devel ncurses-devel unzip zlib-devel automake pcre-devel xz-devel wget
 
 # 安装Vim8
 pushd /tmp
