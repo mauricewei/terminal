@@ -43,10 +43,7 @@ popd
 cp -v vimrc ~/.vimrc
 mkdir ~/.vim/colors
 cp -v solarized.vim  ~/.vim/colors
-vim "+PluginInstall" "+x" "+x"
 
-# 安装taglist插件
-cp -rv ../files/plugin ~/.vim/
-cp -rv ../files/doc ~/.vim/
+vim "+PluginInstall" "+x" "+x"
 
 ~/.vim/bundle/YouCompleteMe/install.sh
