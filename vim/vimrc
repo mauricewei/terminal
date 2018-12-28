@@ -58,6 +58,8 @@ set autoread
     Plugin 'kien/ctrlp.vim'
     "taglist的增强版，查看标签，依赖于ctags
     Plugin 'majutsushi/tagbar'
+    " HTML插件
+    Plugin 'mattn/emmet-vim'
   "}
   call vundle#end()
 "}
@@ -122,8 +124,8 @@ let g:nerdtree_tabs_open_on_console_startup=1
 au BufNewFile,BufRead *.py set tabstop=4 |set softtabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set autoindent|set fileformat=unix
 " END按照PEP8标准来配置vim
 
-" 配置yaml格式文件自动缩进
-autocmd FileType yaml setlocal ai ts=2 sw=2 et
+" 配置yaml,html格式文件自动缩进
+autocmd FileType yaml,html setlocal ai ts=2 sw=2 et
 " END 配置yaml格式文件自动缩进
 
 " 配置indentline
