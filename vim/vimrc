@@ -151,6 +151,12 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$' 
 " END配置ctrlp.vim
 
+" 配置emmet-vim
+" Enable just for html/css
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+" END配置emmet-vim
+
 """ color settings
  set t_Co=256
  if has("gui_running")
