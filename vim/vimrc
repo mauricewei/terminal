@@ -42,18 +42,9 @@ set incsearch
 set hlsearch                    "高亮搜索项
 set whichwrap+=<,>,h,l
 set autoread
-au BufNewFile,BufRead *.py " 按照PEP8标准来配置python文件
-\ set tabstop=4
-\ set softtabstop=4
-\ set shiftwidth=4
-\ set textwidth=79
-\ set expandtab
-\ set autoindent
-\ set fileformat=unix
-au BufNewFile,BufRead *.js, *.html, *.css "前端代码文件缩进设置
-\ set tabstop=2
-\ set softtabstop=2
-\ set shiftwidth=2
+au BufNewFile,BufRead *.py set tabstop=4|set softtabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set autoindent|set fileformat=unix
+au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2|set softtabstop=2|set shiftwidth=2
+autocmd FileType yaml setlocal ai ts=2 sw=2 et
 
 " 快捷键设置 ----------------------------------
 :nmap tl :TagbarToggle<CR>
