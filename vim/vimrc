@@ -1,13 +1,31 @@
 " 设置外观 -------------------------------------
-set number                      "显示行号 
+set number                      "显示行号
 set showtabline=0               "隐藏顶部标签栏"
-set guioptions-=r               "隐藏右侧滚动条" 
+set guioptions-=r               "隐藏右侧滚动条"
 set guioptions-=L               "隐藏左侧滚动条"
 set guioptions-=b               "隐藏底部滚动条"
 set cursorline                  "突出显示当前行"
 set cursorcolumn                "突出显示当前列"
 set langmenu=zh_CN.UTF-8        "显示中文菜单
-" 变成辅助 -------------------------------------
+
+""" 配色设置 ----------------------------------
+ set t_Co=256
+ if has("gui_running")
+     set guioptions=gR
+     set mousemodel=popup
+     set background=light
+     ""hi LineNr cterm=bold guibg=black guifg=white
+     ""hi CursorLine cterm=none ctermbg=lightgray ctermfg=none
+     ""hi CursorColumn cterm=none ctermbg=lightgray ctermfg=none
+ else
+     set background=dark
+     ""hi LineNr cterm=bold ctermbg=black ctermfg=white
+     ""hi CursorLine cterm=none ctermbg=darkgray ctermfg=none
+     ""hi CursorColumn cterm=none ctermbg=darkgray ctermfg=none
+ endif
+:silent! colorscheme solarized
+
+" 其他杂项 -------------------------------------
 syntax on                       "开启语法高亮
 "set nowrap                     "设置代码不折行
 set fileformat=unix             "设置以unix的格式保存文件
@@ -18,7 +36,6 @@ set backspace+=indent,eol,start "set backspace&可以对其重置
 set showmatch                   "显示匹配的括号
 set scrolloff=5                 "距离顶部和底部5行
 set laststatus=2                "命令行为两行
-" 其他杂项 -------------------------------------
 set mouse=a                     "启用鼠标
 set selection=exclusive
 set selectmode=mouse,key
@@ -30,13 +47,33 @@ set expandtab                 	"允许扩展table
 set whichwrap+=<,>,h,l
 set autoread
 
-"{vundle setup
+" 快捷键设置 ----------------------------------
+:nmap tl :TagbarToggle<CR>
+:map nu :set nu<CR>
+:map nnu :set nonu<CR>
+:nmap mo :set mouse=a<CR>
+:nmap nmo :set mouse=<CR>
+vnoremap <Leader>y "+y " 设置快捷键将选中文本块复制至系统剪贴板
+nmap <Leader>p "+p " 设置快捷键将系统剪贴板内容粘贴至 vim
+
+" Ag设置 --------------------------------------
+set runtimepath^=~/.vim/bundle/ag
+let g:ag_working_path_mode="r"
+
+" Return to last edit position when opening files (You want this!) ---------------
+autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+" set it to the first line when editing a git commit message ---------------------
+ au FileType gitcommit au! BufEnter COMMIT_EDITMSG
+    \ call setpos('.', [0, 1, 1, 0])
+
+" 加载插件 ------------------------------------
   set nocompatible
   set rtp+=~/.vim/bundle/Vundle.vim
-  "vim-go | go settings `go get -u github.com/golang/lint`
   set rtp+=$GOPATH/src/github.com/golang/lint/misc/vim
   call vundle#begin()
-  "{plugins
     " 安装Vundle
     Plugin 'gmarik/Vundle.vim'
     " 安装NERDTree
@@ -60,20 +97,13 @@ set autoread
     Plugin 'majutsushi/tagbar'
     " HTML插件
     Plugin 'mattn/emmet-vim'
-  "}
+    " 使用bracketed-paste mode，粘贴代码时避免格式化
+    Plugin 'ConradIrwin/vim-bracketed-paste'
+    " 高亮行末空格(标红), 也可以一键去除文件中所有行行尾空格
+    Plugin 'bronson/vim-trailing-whitespace'
   call vundle#end()
-"}
 
-"Return to last edit position when opening files (You want this!)
-  autocmd BufReadPost *
-       \ if line("'\"") > 0 && line("'\"") <= line("$") |
-       \   exe "normal! g`\"" |
-       \ endif
-"set it to the first line when editing a git commit message
-  au FileType gitcommit au! BufEnter COMMIT_EDITMSG
-        \ call setpos('.', [0, 1, 1, 0])
-
-" 插件设置
+" 插件配置项 -----------------------------------
 " Plugin iamcco/markdown-preview.vim 按键绑定例子（F8打开预览窗口，F9关闭预览窗口）：
 nmap <silent> <F8> <Plug>MarkdownPreview        " 普通模式
 imap <silent> <F8> <Plug>MarkdownPreview        " 插入模式
@@ -81,19 +111,13 @@ nmap <silent> <F9> <Plug>StopMarkdownPreview    " 普通模式
 imap <silent> <F9> <Plug>StopMarkdownPreview    " 插入模式
 
 " 配置NERDTree
-"使用F3键快速调出和隐藏它
-map <F3> :NERDTreeToggle<CR>
+map <F3> :NERDTreeToggle<CR> "使用F3键快速调出和隐藏它
 let NERDTreeChDirMode=1
-"显示书签"
-let NERDTreeShowBookmarks=1
-"设置忽略文件类型"
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
-"窗口大小"
-let NERDTreeWinSize=25
-"修改默认箭头
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-"How can I open a NERDTree automatically when vim starts up if no files were specified?
+let NERDTreeShowBookmarks=1 "显示书签
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$'] "设置忽略文件类型
+let NERDTreeWinSize=25 "窗口大小
+let g:NERDTreeDirArrowExpandable = '▸' "修改默认箭头
+let g:NERDTreeDirArrowCollapsible = '▾' "修改默认箭头
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 "How can I open NERDTree automatically when vim starts up on opening a directory?
@@ -113,12 +137,10 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
-"显示行号
-let NERDTreeShowLineNumbers=1
+let NERDTreeShowLineNumbers=1 "显示行号
 let NERDTreeAutoCenter=1
-"在终端启动vim时，共享NERDTree
-let g:nerdtree_tabs_open_on_console_startup=1
-" END配置NERDTree 
+let g:nerdtree_tabs_open_on_console_startup=1 "在终端启动vim时，共享NERDTree
+" END配置NERDTree
 
 " 按照PEP8标准来配置vim
 au BufNewFile,BufRead *.py set tabstop=4 |set softtabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set autoindent|set fileformat=unix
@@ -129,70 +151,34 @@ autocmd FileType yaml setlocal ai ts=2 sw=2 et
 " END 配置yaml格式文件自动缩进
 
 " 配置indentline
-"支持任意ASCII码，也可以使用特殊字符：¦, ┆, or │ ，但只在utf-8编码下有效
-let g:indentLine_char='¦'
-"使indentline生效
-let g:indentLine_enabled = 1  
+let g:indentLine_char='¦' "支持任意ASCII码，也可以使用特殊字符：¦, ┆, or │ ，但只在utf-8编码下有效
+let g:indentLine_enabled = 1 "使indentline生效
 " EDN配置indentline
 
 " 配置Plugin 'tmhedberg/SimpylFold'
 "必须手动输入za来折叠（和取消折叠）
-set foldmethod=indent                " 根据每行的缩进开启折叠
+set foldmethod=indent " 根据每行的缩进开启折叠
 set foldlevel=99
-"使用空格键会是更好的选择,所以在你的配置文件中加上这一行命令吧：
-nnoremap <space> za
-"希望看到折叠代码的文档字符串？
-let g:SimpylFold_docstring_preview=1
+nnoremap <space> za "使用空格键会是更好的选择,所以在你的配置文件中加上这一行命令吧
+let g:SimpylFold_docstring_preview=1 "希望看到折叠代码的文档字符串？
 " ENDPlugin 'tmhedberg/SimpylFold'
 
 " 配置ctrlp.vim
-let g:ctrlp_map = '<c-p>' 
+let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$' 
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$'
 " END配置ctrlp.vim
 
 " 配置emmet-vim
-" Enable just for html/css
-let g:user_emmet_install_global = 0
+let g:user_emmet_install_global = 0 " Enable just for html/css
 autocmd FileType html,css EmmetInstall
 " END配置emmet-vim
 
-""" color settings
- set t_Co=256
- if has("gui_running")
-     set guioptions=gR
-     set mousemodel=popup
-     set background=light
-     ""hi LineNr cterm=bold guibg=black guifg=white
-     ""hi CursorLine cterm=none ctermbg=lightgray ctermfg=none
-     ""hi CursorColumn cterm=none ctermbg=lightgray ctermfg=none
- else
-     set background=dark
-     ""hi LineNr cterm=bold ctermbg=black ctermfg=white
-     ""hi CursorLine cterm=none ctermbg=darkgray ctermfg=none
-     ""hi CursorColumn cterm=none ctermbg=darkgray ctermfg=none
- endif
+" 配置vim-trailing-whitespace
+map <leader><space> :FixWhitespace<cr>
+" END配置vim-trailing-whitespace
 
-:silent! colorscheme solarized
-" END配色方案
-
-" 函数列表插件
+" 函数列表插件 --------------------------------
 filetype on
-" 设置tagbar
-" 设置 tagbar 子窗口的位置出现在主编辑区的左边
-" let tagbar_left=1
-" " 设置标签子窗口的宽度
-let tagbar_width=32
-" " tagbar 子窗口中不显示冗余帮助信息
-let g:tagbar_compact=1
-
-" 快捷键设置
-:nmap tl :TagbarToggle<CR>
-:map nu :set nu<CR>
-:map nnu :set nonu<CR>
-:nmap mo :set mouse=a<CR>
-:nmap nmo :set mouse=<CR>
-
-" Ag设置 
-set runtimepath^=~/.vim/bundle/ag
-let g:ag_working_path_mode="r"
+let tagbar_width=32 "设置标签子窗口的宽度
+let g:tagbar_compact=1 "tagbar 子窗口中不显示冗余帮助信息
