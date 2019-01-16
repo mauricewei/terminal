@@ -42,9 +42,22 @@ set incsearch
 set hlsearch                    "高亮搜索项
 set whichwrap+=<,>,h,l
 set autoread
-au BufNewFile,BufRead *.py set tabstop=4|set softtabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set autoindent|set fileformat=unix
-au BufNewFile,BufRead *.js, *.html, *.css set tabstop=2|set softtabstop=2|set shiftwidth=2
-autocmd FileType yaml setlocal ai ts=2 sw=2 et
+au BufNewFile,BufRead *.py "设置python文件tab键和缩进
+	set tabstop=4|
+	set softtabstop=4|
+	set shiftwidth=4|
+	set textwidth=79|
+	set expandtab|
+	set autoindent|
+	set fileformat=unix
+au BufNewFile,BufRead *.html,*.js,*.css "设置前端代码文件tab键和缩进
+    set tabstop=2|
+    set softtabstop=2|
+    set shiftwidth=2|
+    set expandtab|
+    set autoindent|
+    set fileformat=unix
+autocmd FileType yaml setlocal ai ts=2 sw=2 et "设置yaml文件tab键
 
 " 快捷键设置 ----------------------------------
 :nmap tl :TagbarToggle<CR>
@@ -108,6 +121,7 @@ nmap <silent> <F8> <Plug>MarkdownPreview        " 普通模式
 imap <silent> <F8> <Plug>MarkdownPreview        " 插入模式
 nmap <silent> <F9> <Plug>StopMarkdownPreview    " 普通模式
 imap <silent> <F9> <Plug>StopMarkdownPreview    " 插入模式
+" END配置iamcco/markdown-preview.vim
 
 " 配置NERDTree
 map <F3> :NERDTreeToggle<CR> "使用F3键快速调出和隐藏它
@@ -154,7 +168,7 @@ let g:indentLine_enabled = 1 "使indentline生效
 "必须手动输入za来折叠（和取消折叠）
 set foldmethod=indent " 根据每行的缩进开启折叠
 set foldlevel=99
-nnoremap <space> za "使用空格键会是更好的选择,所以在你的配置文件中加上这一行命令吧
+nnoremap <space> za "使用空格键折叠代码
 let g:SimpylFold_docstring_preview=1 "希望看到折叠代码的文档字符串？
 " ENDPlugin 'tmhedberg/SimpylFold'
 
