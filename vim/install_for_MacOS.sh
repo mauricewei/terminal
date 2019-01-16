@@ -13,8 +13,9 @@ if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
 fi
 
 cp -v vimrc ~/.vimrc
-mkdir ~/.vim/colors
-cp -v solarized.vim  ~/.vim/colors
+cp -rv plugin  ~/.vim/
+cp -rv autoload  ~/.vim/
+
 vim "+PluginInstall" "+x" "+x"
 
 ~/.vim/bundle/YouCompleteMe/install.sh
