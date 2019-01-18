@@ -1,5 +1,4 @@
 #!/bin/bash
-set -x
 
 # 拷贝remoteserver小程序到指定目录
 cp -v ./remotecopy /usr/local/bin
