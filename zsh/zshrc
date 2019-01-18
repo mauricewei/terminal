@@ -47,3 +47,9 @@ f() {
     pushd "$dir" &>/dev/null && fzf -1 -e -q "$query" && popd &>/dev/null
 }
 
+if [[ -f $HOME/.startremotecopy.sh ]]; then
+    ps -ef | grep "/usr/bin/perl /usr/local/bin/remotecopyserver" | grep -v grep &>/dev/null
+    if [ $? != 0 ]; then
+        sh $HOME/.startremotecopy.sh
+    fi
+fi
