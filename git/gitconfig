@@ -1,0 +1,10 @@
+[core]
+        excludesfile = ~/.gitignore
+[push]
+        default = matching
+[credential]
+        helper = store
+[http]
+        sslVerify = false
+[color]
+	ui = true
