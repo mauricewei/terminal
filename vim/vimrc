@@ -55,9 +55,6 @@ autocmd FileType yaml setlocal ai ts=2 sw=2 et "设置yaml文件tab键
 vnoremap <Leader>y "+y " 设置快捷键将选中文本块复制至系统剪贴板
 nmap <Leader>p "+p " 设置快捷键将系统剪贴板内容粘贴至 vim
 
-" Ag设置 --------------------------------------
-set runtimepath^=~/.vim/bundle/ag
-let g:ag_working_path_mode="r"
 
 " Return to last edit position when opening files (You want this!) ---------------
 autocmd BufReadPost *
@@ -86,9 +83,9 @@ autocmd BufReadPost *
     Plugin 'iamcco/markdown-preview.vim'
     " puppet语法高亮显示
     Plugin 'puppetlabs/puppet-syntax-vim'
-	" indentLine是一款缩进指示线
+    " indentLine是一款缩进指示线
     Plugin 'Yggdroot/indentLine'
-	" 代码折叠
+    " 代码折叠
     Plugin 'tmhedberg/SimpylFold'
     " 搜索文件
     Plugin 'kien/ctrlp.vim'
@@ -100,6 +97,10 @@ autocmd BufReadPost *
     Plugin 'ConradIrwin/vim-bracketed-paste'
     " 高亮行末空格(标红), 也可以一键去除文件中所有行行尾空格
     Plugin 'bronson/vim-trailing-whitespace'
+    " Ag搜索插件,功能类似于grep
+    Plugin 'rking/ag.vim'
+    " 代码检查工具
+    Plugin 'w0rp/ale'
   call vundle#end()
 
 " 插件配置项 -----------------------------------
@@ -173,6 +174,18 @@ autocmd FileType html,css EmmetInstall
 " 配置vim-trailing-whitespace
 map <leader><space> :FixWhitespace<cr>
 " END配置vim-trailing-whitespace
+
+" 配置rking/ag--------------------------------------
+set runtimepath^=~/.vim/bundle/ag
+let g:ag_working_path_mode="r"
+" END配置rking/ag
+
+" 配置w0rp/ale
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
+" END配置w0rp/ale
 
 " 函数列表插件 --------------------------------
 filetype on

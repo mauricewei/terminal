@@ -5,11 +5,13 @@ yum install -y ctags cmake gcc-c++ python-devel ncurses-devel unzip zlib-devel a
 # 安装vim
 pushd /tmp
 git clone https://github.com/vim/vim.git
-cd ./vim
+cd ./vim/src
 ./configure --disable-selinux \
 		--enable-perlinterp=yes \
 		--enable-pythoninterp=yes \
 		--enable-python3interp=yes \
+		--with-python3-command=/usr/local/bin/python3 \
+		--with-python3-config-dir=/usr/local/lib/python3.6/config-3.6m-x86_64-linux-gnu/ \
 		--enable-rubyinterp=yes \
 		--enable-cscope \
 		--enable-gui=auto \
@@ -19,7 +21,8 @@ cd ./vim
 		--with-x \
 		--with-gnome \
 		--with-compiledby="Maurice Wei" \
-		--prefix=/usr/local/vim8
+		--prefix=/usr/local/vim8 \
+		--enable-luainterp
 sudo make
 sudo make install
 export PATH=/usr/local/bin:$PATH
