@@ -99,7 +99,7 @@ autocmd BufReadPost *
     Plugin 'bronson/vim-trailing-whitespace'
     " Ag搜索插件,功能类似于grep
     Plugin 'rking/ag.vim'
-    " 代码格式化插件，python以来autopep8
+    " 代码格式化插件，python依赖autopep8，需先pip install autopep8
     Plugin 'Chiel92/vim-autoformat'
 
   call vundle#end()
