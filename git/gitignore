@@ -1,2 +1,4 @@
 .DS\_Store
 *.swp
+# python
+*.py[cod]
