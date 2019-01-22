@@ -43,7 +43,7 @@ set hlsearch                    "高亮搜索项
 set whichwrap+=<,>,h,l
 set autoread
 au BufNewFile,BufRead *.py set tabstop=4|set softtabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set autoindent|set fileformat=unix
-au BufNewFile,BufRead *.html,*.js,*.css set tabstop=2|set softtabstop=2|set shiftwidth=2|set expandtab|set autoindent|set fileformat=unix
+au BufNewFile,BufRead *.html,*.js,*.css set tabstop=2|set softtabstop=2|set shiftwidth=2
 autocmd FileType yaml setlocal ai ts=2 sw=2 et "设置yaml文件tab键
 
 " 快捷键设置 ----------------------------------
