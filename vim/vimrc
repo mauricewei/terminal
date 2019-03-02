@@ -104,6 +104,8 @@ autocmd BufReadPost *
     Plugin 'rking/ag.vim'
     " 代码格式化插件，python依赖autopep8，需先pip install autopep8
     Plugin 'Chiel92/vim-autoformat'
+    " 标签展示以及快速跳转(增强vim的书签功能)
+    Plugin 'kshenoy/vim-signature'
 
   call vundle#end()
 
