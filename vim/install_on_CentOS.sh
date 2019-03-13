@@ -28,7 +28,7 @@ cd ./vim/src
 		--enable-luainterp
 sudo make
 sudo make install
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/vim8/bin/:$PATH
 popd
 
 if ! ctags --list-languages | grep -qi python; then
