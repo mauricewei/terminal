@@ -1,6 +1,6 @@
 #!/bin/sh
 
-yum install -y ctags cmake gcc-c++ python-devel ncurses-devel unzip zlib-devel automake pcre-devel xz-devel wget libXt-devel gtk2-devel ruby ruby-devel perl perl-devel perl-ExtUtils-Embed
+yum install -y ctags cmake gcc-c++ python-devel ncurses-devel unzip zlib-devel automake pcre-devel xz-devel wget libXt-devel gtk2-devel ruby ruby-devel perl perl-devel perl-ExtUtils-Embed git
 
 # 插件vim-autoformat需要，否则无法对代码执行pep8格式化
 pip install autopep8
