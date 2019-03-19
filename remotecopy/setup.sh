@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # 拷贝remoteserver小程序到指定目录
+cp -v ./remotecopyrc $HOME/.remotecopyrc
 cp -v ./remotecopy /usr/local/bin
 cp -v ./remotecopyserver /usr/local/bin
 
