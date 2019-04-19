@@ -1,6 +1,11 @@
 #!/bin/sh
 
+# 安装基础安装包
 yum install -y ctags cmake gcc-c++ python-devel ncurses-devel unzip zlib-devel automake pcre-devel xz-devel wget libXt-devel gtk2-devel ruby ruby-devel perl perl-devel perl-ExtUtils-Embed git
+
+# 安装 pip
+yum install epel-release -y
+yum install python-pip -y
 
 # 插件vim-autoformat需要，否则无法对代码执行pep8格式化
 pip install autopep8
@@ -28,14 +33,18 @@ cd ./vim/src
 		--enable-luainterp
 sudo make
 sudo make install
-export PATH=/usr/local/vim8/bin/:$PATH
 popd
+# 设置 vim8 环境变量
+echo 'export PATH=/usr/local/vim8/bin/:$PATH' >> /etc/profile
+source /etc/profile
 
+# 检查 ctags 是否安装
 if ! ctags --list-languages | grep -qi python; then
     echo "Fail to install ctags!"
     exit 1
 fi
 
+# 检查 vundle 是否安装
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
     echo "Install vundle ..."
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
