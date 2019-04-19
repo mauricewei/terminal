@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # 安装基础安装包
-apt install -y ctags cmake  unzip automake wget ruby perl ncurses-dev git
+apt install -y ctags cmake  unzip automake wget ruby perl ncurses-dev libxt-dev git
 
 
 # 安装 pip
@@ -18,8 +18,8 @@ cd ./vim/src
 		--enable-perlinterp=yes \
 		--enable-pythoninterp=yes \
 		--enable-python3interp=yes \
-		--with-python3-command=/usr/local/bin/python3 \
-		--with-python3-config-dir=/usr/local/lib/python3.6/config-3.6m-x86_64-linux-gnu/ \
+		--with-python3-command=/usr/lib/python3.6/ \
+		--with-python3-config-dir=/usr/lib/python3.6/config-3.6m-x86_64-linux-gnu/ \
 		--enable-rubyinterp=yes \
 		--enable-cscope \
 		--enable-gui=auto \
