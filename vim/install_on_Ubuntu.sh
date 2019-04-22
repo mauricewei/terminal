@@ -51,15 +51,7 @@ if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
 fi
 
 # 安装ag
-pushd /tmp
-wget https://github.com/ggreer/the_silver_searcher/archive/master.zip
-mv master.zip ag.zip
-unzip ag.zip
-cd the_silver_searcher-master/
-./build.sh --with-png --without-zlib
-make install
-popd
-rm -rf /tmp/ag.zip /tmp/the_silver_searcher-master/
+apt install silversearcher-ag -y
 
 # 配置ag.vim插件
 pushd ~/.vim/bundle
