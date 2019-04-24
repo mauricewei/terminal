@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # 安装基础安装包
 apt install -y ctags cmake  unzip automake wget ruby perl ncurses-dev libxt-dev git
