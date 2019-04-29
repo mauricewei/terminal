@@ -43,9 +43,9 @@ set hlsearch                    "高亮搜索项
 set whichwrap+=<,>,h,l
 set autoread
 set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-au BufNewFile,BufRead *.py set tabstop=4|set softtabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set autoindent|set fileformat=unix
+set expandtab
+set autoindent
+au BufNewFile,BufRead *.py set tabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set autoindent|set fileformat=unix
 au BufNewFile,BufRead *.html,*.js,*.css set tabstop=2|set softtabstop=2|set shiftwidth=2
 autocmd FileType yaml setlocal ai ts=2 sw=2 et "设置yaml文件tab键
 
@@ -148,10 +148,6 @@ let NERDTreeShowLineNumbers=1 "显示行号
 let NERDTreeAutoCenter=1
 let g:nerdtree_tabs_open_on_console_startup=1 "在终端启动vim时，共享NERDTree
 " END配置NERDTree
-
-" 配置yaml格式文件自动缩进
-autocmd FileType yaml setlocal ai ts=2 sw=2 et
-" END 配置yaml格式文件自动缩进
 
 " 配置indentline
 let g:indentLine_char='¦' "支持任意ASCII码，也可以使用特殊字符：¦, ┆, or │ ，但只在utf-8编码下有效
