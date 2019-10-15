@@ -122,7 +122,7 @@ map <F3> :NERDTreeToggle<CR> "使用F3键快速调出和隐藏它
 let NERDTreeChDirMode=1
 let NERDTreeShowBookmarks=1 "显示书签
 let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$'] "设置忽略文件类型
-let NERDTreeWinSize=25 "窗口大小
+let NERDTreeWinSize=40 "窗口大小
 let g:NERDTreeDirArrowExpandable = '▸' "修改默认箭头
 let g:NERDTreeDirArrowCollapsible = '▾' "修改默认箭头
 autocmd StdinReadPre * let s:std_in=1
