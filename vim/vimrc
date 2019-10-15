@@ -37,7 +37,6 @@ set mouse=a                     "启用鼠标
 set selection=exclusive
 set selectmode=mouse,key
 set matchtime=5
-set ignorecase                  "忽略大小写
 set incsearch
 set hlsearch                    "高亮搜索项
 set whichwrap+=<,>,h,l
