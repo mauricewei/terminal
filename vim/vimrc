@@ -85,7 +85,7 @@ autocmd BufReadPost *
     " MarkDown 预览插件
     Plugin 'iamcco/markdown-preview.vim'
     " puppet语法高亮显示
-    Plugin 'puppetlabs/puppet-syntax-vim'
+    " Plugin 'puppetlabs/puppet-syntax-vim'
     " indentLine是一款缩进指示线
     Plugin 'Yggdroot/indentLine'
     " 代码折叠
@@ -95,7 +95,7 @@ autocmd BufReadPost *
     "taglist的增强版，查看标签，依赖于ctags
     Plugin 'majutsushi/tagbar'
     " HTML插件
-    Plugin 'mattn/emmet-vim'
+    " Plugin 'mattn/emmet-vim'
     " 使用bracketed-paste mode，粘贴代码时避免格式化
     Plugin 'ConradIrwin/vim-bracketed-paste'
     " 高亮行末空格(标红), 也可以一键去除文件中所有行行尾空格
@@ -103,7 +103,7 @@ autocmd BufReadPost *
     " Ag搜索插件,功能类似于grep
     Plugin 'rking/ag.vim'
     " 代码格式化插件，python依赖autopep8，需先pip install autopep8
-    Plugin 'Chiel92/vim-autoformat'
+    " Plugin 'Chiel92/vim-autoformat'
     " 标签展示以及快速跳转(增强vim的书签功能)
     Plugin 'kshenoy/vim-signature'
 
@@ -152,6 +152,7 @@ let g:nerdtree_tabs_open_on_console_startup=1 "在终端启动vim时，共享NER
 " 配置indentline
 let g:indentLine_char='¦' "支持任意ASCII码，也可以使用特殊字符：¦, ┆, or │ ，但只在utf-8编码下有效
 let g:indentLine_enabled = 1 "使indentline生效
+let g:indentLine_setConceal = 0
 " EDN配置indentline
 
 " 配置Plugin 'tmhedberg/SimpylFold'
@@ -169,8 +170,8 @@ let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$'
 " END配置ctrlp.vim
 
 " 配置emmet-vim
-let g:user_emmet_install_global = 0 " Enable just for html/css
-autocmd FileType html,css EmmetInstall
+" let g:user_emmet_install_global = 0 " Enable just for html/css
+" autocmd FileType html,css EmmetInstall
 " END配置emmet-vim
 
 " 配置vim-trailing-whitespace
@@ -183,10 +184,10 @@ let g:ag_working_path_mode="r"
 " END配置rking/ag
 
 " 配置Chiel92/vim-autoformat
-nnoremap <leader>f :Autoformat<CR>
-let g:autoformat_autoindent = 0
-let g:autoformat_retab = 0
-let g:autoformat_remove_trailing_spaces = 0
+" nnoremap <leader>f :Autoformat<CR>
+" let g:autoformat_autoindent = 0
+" let g:autoformat_retab = 0
+" let g:autoformat_remove_trailing_spaces = 0
 " END配置Chiel92/vim-autoformat
 
 " 函数列表插件 --------------------------------

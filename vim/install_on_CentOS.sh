@@ -12,7 +12,7 @@ pip install autopep8
 
 # 安装vim
 pushd /tmp
-git clone https://github.com/vim/vim.git
+git clone https://github.com/vim/vim.git -b v8.2.0
 cd ./vim/src
 ./configure --disable-selinux \
 		--enable-perlinterp=yes \
@@ -47,7 +47,7 @@ fi
 # 检查 vundle 是否安装
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
     echo "Install vundle ..."
-    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    git clone https://github.com/VundleVim/Vundle.vim.git -b v0.10 ~/.vim/bundle/Vundle.vim
 fi
 
 # 安装ag
