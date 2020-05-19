@@ -152,7 +152,8 @@ let g:nerdtree_tabs_open_on_console_startup=1 "在终端启动vim时，共享NER
 " 配置indentline
 let g:indentLine_char='¦' "支持任意ASCII码，也可以使用特殊字符：¦, ┆, or │ ，但只在utf-8编码下有效
 let g:indentLine_enabled = 1 "使indentline生效
-let g:indentLine_setConceal = 0
+autocmd FileType json,markdown let g:indentLine_conceallevel=0
+autocmd FileType javascript,python,c,cpp,java,vim,shell let g:indentLine_conceallevel=2
 " EDN配置indentline
 
 " 配置Plugin 'tmhedberg/SimpylFold'
