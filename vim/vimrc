@@ -26,8 +26,7 @@ set langmenu=zh_CN.UTF-8        "显示中文菜单
 :silent! colorscheme solarized
 
 " 其他杂项 -------------------------------------
-syntax on                       "开启语法高亮
-"set nowrap                     "设置代码不折行
+"syntax on                       "开启语法高亮
 set cindent                     "设置C样式的缩进格式
 set backspace+=indent,eol,start "set backspace&可以对其重置
 set showmatch                   "显示匹配的括号
@@ -82,10 +81,6 @@ autocmd BufReadPost *
     Plugin 'Valloric/YouCompleteMe'
     " 状态栏增强展示
     Plugin 'bling/vim-airline'
-    " MarkDown 预览插件
-    Plugin 'iamcco/markdown-preview.vim'
-    " puppet语法高亮显示
-    " Plugin 'puppetlabs/puppet-syntax-vim'
     " indentLine是一款缩进指示线
     Plugin 'Yggdroot/indentLine'
     " 代码折叠
@@ -94,29 +89,17 @@ autocmd BufReadPost *
     Plugin 'kien/ctrlp.vim'
     "taglist的增强版，查看标签，依赖于ctags
     Plugin 'majutsushi/tagbar'
-    " HTML插件
-    " Plugin 'mattn/emmet-vim'
     " 使用bracketed-paste mode，粘贴代码时避免格式化
     Plugin 'ConradIrwin/vim-bracketed-paste'
     " 高亮行末空格(标红), 也可以一键去除文件中所有行行尾空格
     Plugin 'bronson/vim-trailing-whitespace'
     " Ag搜索插件,功能类似于grep
     Plugin 'rking/ag.vim'
-    " 代码格式化插件，python依赖autopep8，需先pip install autopep8
-    " Plugin 'Chiel92/vim-autoformat'
     " 标签展示以及快速跳转(增强vim的书签功能)
     Plugin 'kshenoy/vim-signature'
-
   call vundle#end()
 
 " 插件配置项 -----------------------------------
-" Plugin iamcco/markdown-preview.vim 按键绑定例子（F8打开预览窗口，F9关闭预览窗口）：
-nmap <silent> <F8> <Plug>MarkdownPreview        " 普通模式
-imap <silent> <F8> <Plug>MarkdownPreview        " 插入模式
-nmap <silent> <F9> <Plug>StopMarkdownPreview    " 普通模式
-imap <silent> <F9> <Plug>StopMarkdownPreview    " 插入模式
-" END配置iamcco/markdown-preview.vim
-
 " 配置NERDTree
 map <F3> :NERDTreeToggle<CR> "使用F3键快速调出和隐藏它
 let NERDTreeChDirMode=1
@@ -170,11 +153,6 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$'
 " END配置ctrlp.vim
 
-" 配置emmet-vim
-" let g:user_emmet_install_global = 0 " Enable just for html/css
-" autocmd FileType html,css EmmetInstall
-" END配置emmet-vim
-
 " 配置vim-trailing-whitespace
 map <leader><space> :FixWhitespace<cr>
 " END配置vim-trailing-whitespace
@@ -183,13 +161,6 @@ map <leader><space> :FixWhitespace<cr>
 set runtimepath^=~/.vim/bundle/ag
 let g:ag_working_path_mode="r"
 " END配置rking/ag
-
-" 配置Chiel92/vim-autoformat
-" nnoremap <leader>f :Autoformat<CR>
-" let g:autoformat_autoindent = 0
-" let g:autoformat_retab = 0
-" let g:autoformat_remove_trailing_spaces = 0
-" END配置Chiel92/vim-autoformat
 
 " 函数列表插件 --------------------------------
 filetype on
