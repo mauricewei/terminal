@@ -26,7 +26,7 @@ set langmenu=zh_CN.UTF-8        "显示中文菜单
 :silent! colorscheme solarized
 
 " 其他杂项 -------------------------------------
-"syntax on                       "开启语法高亮
+syntax on                       "开启语法高亮
 set cindent                     "设置C样式的缩进格式
 set backspace+=indent,eol,start "set backspace&可以对其重置
 set showmatch                   "显示匹配的括号
@@ -97,6 +97,8 @@ autocmd BufReadPost *
     Plugin 'rking/ag.vim'
     " 标签展示以及快速跳转(增强vim的书签功能)
     Plugin 'kshenoy/vim-signature'
+    " python语法检查插件
+    Plugin 'w0rp/ale'
   call vundle#end()
 
 " 插件配置项 -----------------------------------
@@ -161,6 +163,12 @@ map <leader><space> :FixWhitespace<cr>
 set runtimepath^=~/.vim/bundle/ag
 let g:ag_working_path_mode="r"
 " END配置rking/ag
+
+" 配置w0rp/ale
+ let g:ale_fix_on_save = 1
+ let g:ale_completion_enabled = 1
+ let g:ale_sign_column_always = 1
+ let g:airline#extensions#ale#enabled = 1
 
 " 函数列表插件 --------------------------------
 filetype on

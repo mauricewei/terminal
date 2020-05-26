@@ -7,8 +7,7 @@ yum install -y ctags cmake gcc-c++ python-devel ncurses-devel unzip zlib-devel a
 yum install epel-release -y
 yum install python-pip -y
 
-# 插件vim-autoformat需要，否则无法对代码执行pep8格式化
-pip install autopep8
+pip install flake8
 
 # 安装vim
 pushd /tmp

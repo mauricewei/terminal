@@ -1,6 +1,6 @@
 #!/bin/sh
 
-brew install ctags cmake
+brew install ctags cmake flake8
 
 if ! ctags --list-languages | grep -qi python; then
     echo "Fail to install ctags!"
