@@ -1,48 +1,28 @@
 " 设置外观 -------------------------------------
 set number                      "显示行号
-set showtabline=0               "隐藏顶部标签栏"
-set guioptions-=r               "隐藏右侧滚动条"
-set guioptions-=L               "隐藏左侧滚动条"
-set guioptions-=b               "隐藏底部滚动条"
 set cursorline                  "突出显示当前行"
 set cursorcolumn                "突出显示当前列"
-set langmenu=zh_CN.UTF-8        "显示中文菜单
 
 """ 配色设置 ----------------------------------
- set t_Co=256
- if has("gui_running")
-     set guioptions=gR
-     set mousemodel=popup
-     set background=light
-     ""hi LineNr cterm=bold guibg=black guifg=white
-     ""hi CursorLine cterm=none ctermbg=lightgray ctermfg=none
-     ""hi CursorColumn cterm=none ctermbg=lightgray ctermfg=none
- else
-     set background=dark
-     ""hi LineNr cterm=bold ctermbg=black ctermfg=white
-     ""hi CursorLine cterm=none ctermbg=darkgray ctermfg=none
-     ""hi CursorColumn cterm=none ctermbg=darkgray ctermfg=none
- endif
+set t_Co=256
+if has("gui_running")
+    set guioptions=gR
+    set mousemodel=popup
+    set background=light
+else
+    set background=dark
+endif
 :silent! colorscheme solarized
 
 " 其他杂项 -------------------------------------
+filetype on
 syntax on                       "开启语法高亮
-set cindent                     "设置C样式的缩进格式
 set backspace+=indent,eol,start "set backspace&可以对其重置
-set showmatch                   "显示匹配的括号
 set scrolloff=5                 "距离顶部和底部5行
-set laststatus=2                "命令行为两行
 set mouse=a                     "启用鼠标
-set selection=exclusive
-set selectmode=mouse,key
-set matchtime=5
-set incsearch
+set incsearch                   "输入搜索内容时就显示搜索结果
 set hlsearch                    "高亮搜索项
-set whichwrap+=<,>,h,l
-set autoread
-set tabstop=4
-set expandtab
-set autoindent
+set autoindent                  "参考上一行的缩进方式进行自动缩进
 set encoding=utf-8
 au BufNewFile,BufRead *.py set tabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set autoindent|set fileformat=unix
 au BufNewFile,BufRead *.html,*.js,*.css set tabstop=2|set softtabstop=2|set shiftwidth=2
@@ -54,9 +34,6 @@ autocmd FileType yaml setlocal ai ts=2 sw=2 et "设置yaml文件tab键
 :map nnu :set nonu<CR>
 :nmap mo :set mouse=a<CR>
 :nmap nmo :set mouse=<CR>
-vnoremap <Leader>y "+y " 设置快捷键将选中文本块复制至系统剪贴板
-nmap <Leader>p "+p " 设置快捷键将系统剪贴板内容粘贴至 vim
-
 
 " Return to last edit position when opening files (You want this!) ---------------
 autocmd BufReadPost *
@@ -83,22 +60,18 @@ autocmd BufReadPost *
     Plugin 'bling/vim-airline'
     " indentLine是一款缩进指示线
     Plugin 'Yggdroot/indentLine'
-    " 代码折叠
-    Plugin 'tmhedberg/SimpylFold'
-    " 搜索文件
-    Plugin 'kien/ctrlp.vim'
-    "taglist的增强版，查看标签，依赖于ctags
+    " tagbar
     Plugin 'majutsushi/tagbar'
     " 使用bracketed-paste mode，粘贴代码时避免格式化
     Plugin 'ConradIrwin/vim-bracketed-paste'
     " 高亮行末空格(标红), 也可以一键去除文件中所有行行尾空格
     Plugin 'bronson/vim-trailing-whitespace'
-    " Ag搜索插件,功能类似于grep
-    Plugin 'rking/ag.vim'
     " 标签展示以及快速跳转(增强vim的书签功能)
     Plugin 'kshenoy/vim-signature'
     " python语法检查插件
     Plugin 'w0rp/ale'
+    " Golang插件
+    Plugin 'fatih/vim-go'
   call vundle#end()
 
 " 插件配置项 -----------------------------------
@@ -141,36 +114,18 @@ autocmd FileType json,markdown let g:indentLine_conceallevel=0
 autocmd FileType javascript,python,c,cpp,java,vim,shell let g:indentLine_conceallevel=2
 " EDN配置indentline
 
-" 配置Plugin 'tmhedberg/SimpylFold'
-"必须手动输入za来折叠（和取消折叠）
-set foldmethod=indent " 根据每行的缩进开启折叠
-set foldlevel=99
-nnoremap <space> za "使用空格键折叠代码
-let g:SimpylFold_docstring_preview=1 "希望看到折叠代码的文档字符串？
-" ENDPlugin 'tmhedberg/SimpylFold'
-
-" 配置ctrlp.vim
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn|pyc)$'
-" END配置ctrlp.vim
-
 " 配置vim-trailing-whitespace
 map <leader><space> :FixWhitespace<cr>
 " END配置vim-trailing-whitespace
-
-" 配置rking/ag--------------------------------------
-set runtimepath^=~/.vim/bundle/ag
-let g:ag_working_path_mode="r"
-" END配置rking/ag
 
 " 配置w0rp/ale
  let g:ale_fix_on_save = 1
  let g:ale_completion_enabled = 1
  let g:ale_sign_column_always = 1
  let g:airline#extensions#ale#enabled = 1
+" END配置w0rp/ale
 
-" 函数列表插件 --------------------------------
-filetype on
+" 配置tagbar
 let tagbar_width=32 "设置标签子窗口的宽度
 let g:tagbar_compact=1 "tagbar 子窗口中不显示冗余帮助信息
+" END配置tagbar

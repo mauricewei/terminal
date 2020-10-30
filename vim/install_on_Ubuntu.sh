@@ -49,14 +49,6 @@ if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 fi
 
-# 安装ag
-apt install silversearcher-ag -y
-
-# 配置ag.vim插件
-pushd ~/.vim/bundle
-git clone https://github.com/rking/ag.vim ag
-popd
-
 cp -v vimrc ~/.vimrc
 cp -rv plugin  ~/.vim/
 cp -rv autoload  ~/.vim/
