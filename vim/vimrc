@@ -23,6 +23,8 @@ set mouse=a                     "启用鼠标
 set incsearch                   "输入搜索内容时就显示搜索结果
 set hlsearch                    "高亮搜索项
 set autoindent                  "参考上一行的缩进方式进行自动缩进
+set tabstop=4
+set expandtab
 set encoding=utf-8
 au BufNewFile,BufRead *.py set tabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set autoindent|set fileformat=unix
 au BufNewFile,BufRead *.html,*.js,*.css set tabstop=2|set softtabstop=2|set shiftwidth=2
