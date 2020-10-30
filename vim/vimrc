@@ -91,7 +91,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 "关闭vim时，如果打开的文件除了NERDTree没有其他文件时，它自动关闭，减少多次按:q!
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 "开发的过程中，我们希望git信息直接在NERDTree中显示出来， 和Eclipse一样，修改的文件和增加的文件都给出相应的标注， 这时需要安装的插件就是 nerdtree-git-plugin,配置信息如下
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom= {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
@@ -129,3 +129,19 @@ map <leader><space> :FixWhitespace<cr>
 let tagbar_width=32 "设置标签子窗口的宽度
 let g:tagbar_compact=1 "tagbar 子窗口中不显示冗余帮助信息
 " END配置tagbar
+
+"配置vim-go 插件
+let g:go_fmt_command = "goimports" " 格式化将默认的 gofmt 替换
+let g:go_autodetect_gopath = 1
+let g:go_list_type = "quickfix"
+let g:go_version_warning = 1
+let g:go_highlight_types = 1
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_generate_tags = 1
+let g:godef_split=2
+"配置vim-go 插件
