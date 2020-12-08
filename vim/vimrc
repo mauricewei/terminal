@@ -146,4 +146,5 @@ let g:go_highlight_extra_types = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_generate_tags = 1
 let g:godef_split=2
+let g:go_gopls_enabled = 0
 "配置vim-go 插件
