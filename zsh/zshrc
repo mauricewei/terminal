@@ -53,3 +53,5 @@ if [[ -f $HOME/.startremotecopy.sh ]]; then
         sh $HOME/.startremotecopy.sh
     fi
 fi
+
+eval "$(pyenv init --path)"
